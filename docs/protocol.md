@@ -19,3 +19,9 @@ Choose each threshold independently to maximize positive-class F1 on train over 
 ## Reporting
 
 For each matcher report overall and hard, middle, and easy test pair counts, positive counts and positive rates, plus positive-class precision, recall and F1. Treat a zero denominator as zero. Include chosen train thresholds and discuss slice sizes, class composition, and limits of the similarity proxy. The scores describe these preselected candidate pairs, not all possible cross-table pairs.
+
+## Amendment 1, 2026-11-11
+
+The DBLP-ACM test hard slice has only two positive pairs, too few to estimate hard-slice performance reliably. Extend the evaluation to all three additional DeepMatcher product benchmarks, without selecting among them based on their outcomes: textual Abt-Buy, structured Amazon-Google, and structured Walmart-Amazon. Use each benchmark's supplied train, validation, and test splits; train alone selects thresholds, and each new test split is evaluated once. Report all three alongside DBLP-ACM, whatever the results show.
+
+Use exactly the same normalization, label-independent similarity ratio and fixed difficulty bins, baseline, character-trigram Dice construction, threshold grid and tie rule, and metrics. For Abt-Buy, use `name` as the key title field and title-only trigram Dice (no suitable short second field). For Amazon-Google, use `title` as the key field and `manufacturer` as the second field. For Walmart-Amazon, use `title` and `brand`, respectively. Where a second field is used, retain the 0.75 title / 0.25 second-field weighting. As before, two empty values in a field score zero. Report a cross-dataset summary with overall trigram F1 and each slice's positive count, recall, and F1, in addition to the complete per-dataset tables.
