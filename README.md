@@ -1,6 +1,6 @@
 # Hard-case check
 
-A small, deterministic record-matching experiment on DBLP-ACM. Overall positive-class F1 can mask much lower recall on low-title-similarity pairs. The [results](docs/results.md) report the observed numbers and their limitations; the [protocol](docs/protocol.md) was committed before either matcher was run.
+A small, deterministic record-matching experiment on DBLP-ACM and three product benchmarks. Overall positive-class F1 can mask much lower recall on low-title-similarity pairs, although overall F1 also varies substantially across datasets. The [results](docs/results.md) report the observed numbers and their limitations; the [protocol](docs/protocol.md) and its extension were committed before the corresponding matcher runs.
 
 ## Reproduce
 
@@ -12,10 +12,10 @@ uv venv --python python3
 .venv/bin/python evaluate.py
 ```
 
-The downloader checks the archive's SHA-256; the evaluator checks it again. Both train-selected thresholds and the test tables are printed. The provided validation split is not used for selection or fitting.
+The downloader checks each archive's SHA-256; the evaluator checks it again. Both train-selected thresholds and the test tables are printed. The provided validation splits are not used for selection or fitting. To run a subset, pass one or more names to each command: `dblp-acm`, `abt-buy`, `amazon-google`, or `walmart-amazon`.
 
 ## Data and licensing
 
-The dataset is the [DeepMatcher structured DBLP-ACM experimental benchmark](https://github.com/anhaidgroup/deepmatcher/blob/master/Datasets.md#dblp-acm), derived from the [Leipzig entity-resolution benchmarks](https://dbs.uni-leipzig.de/en/research/projects/object_matching/fever/benchmark_datasets_for_entity_resolution). The downloaded archive is https://pages.cs.wisc.edu/~anhai/data1/deepmatcher_data/Structured/DBLP-ACM/dblp_acm_exp_data.zip (SHA-256 `a15b752ffc318a714690cf13286d31c2012f686525803ca803c392ceff4aa4f3`). A clear redistribution license for these data has not been established; the data are not included in this repository. The code's MIT license does not apply to the dataset; consult its providers for applicable terms.
+The datasets are [DeepMatcher's](https://github.com/anhaidgroup/deepmatcher/blob/master/Datasets.md) structured DBLP-ACM, textual Abt-Buy, structured Amazon-Google, and structured Walmart-Amazon experimental benchmarks. The first three are derived from the [Leipzig entity-resolution benchmarks](https://dbs.uni-leipzig.de/en/research/projects/object_matching/fever/benchmark_datasets_for_entity_resolution). Source archive URLs and SHA-256 checksums are recorded in `download.py`. A clear redistribution license for these data has not been established; the data are not included in this repository. The code's MIT license does not apply to the datasets; consult their providers for applicable terms.
 
 Code: [MIT License](LICENSE).
