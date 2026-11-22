@@ -1,8 +1,20 @@
 # Hard-case check
 
-A reproducible record-matching experiment on DBLP-ACM and three product benchmarks. It compares two fixed similarity matchers with a learned matcher, reports uncertainty by title-similarity slice, and standardizes scores to different slice mixes. The [results](docs/results.md) report all outcomes and limitations; each analysis was registered in the [protocol](docs/protocol.md) before its run.
+A reproducible record-matching experiment on DBLP-ACM and three product benchmarks. It compares two fixed similarity matchers with a learned matcher, reports uncertainty by title-similarity slice, and standardizes scores to different slice mixes. The [results](docs/results.md) report all outcomes and limitations; the [protocol](docs/protocol.md) records the original method and two amendments.
 
 The learned matcher reaches F1 0.981 on DBLP-ACM and 0.667–0.771 on the product benchmarks. No original test split combines F1 at least 0.90 with a supported hard-recall gap; the highest-scoring dataset has only two hard positives. Reweighting Walmart-Amazon's fixed trigram matcher to DBLP-ACM's pair/positive mix raises F1 from 0.370 to 0.824 without changing predictions.
+
+## Method registration and provenance
+
+Methods were committed locally before their corresponding runs. Each registration commit was first pushed to GitHub together with its results. The history preserves the method versions and recorded sequence, but does not independently establish execution timing or provide external, pre-execution timestamped registration.
+
+| Stage | Method commit | Corresponding results |
+|---|---|---|
+| Original DBLP-ACM protocol | [Original protocol](https://github.com/manjast/hard-case-check/commit/20a15ff160c11b2c31f80d7cb2e7a80ab53ac4ba) | [Initial results](https://github.com/manjast/hard-case-check/blob/31a6e60027911040210f06e1a90f7f90fe5aa56e/docs/results.md) |
+| Amendment 1: product benchmarks | [Product extension](https://github.com/manjast/hard-case-check/commit/89897eac2567f8f9d636c72653d6974cc5891fb2) | [Product results](https://github.com/manjast/hard-case-check/blob/eb23d96c2094da3ce47aa1f442682e7cccf462f3/docs/results.md) |
+| Amendment 2: learned matcher, intervals and case-mix analysis | [Second amendment](https://github.com/manjast/hard-case-check/commit/c3f57277ce79819abe9b3ef2216c13354a9168fe) | [Complete results](https://github.com/manjast/hard-case-check/blob/1b1f118de324d2ac4297168f7a78ea1759e9e92c/docs/results.md) |
+
+Amendment 1 followed the finding of only two low-similarity matches in DBLP-ACM. Amendment 2 was written after the fixed rules' results were known; it introduced the explicit combined criterion alongside the new analyses. Earlier result files retain their original interpretations. The complete results report the unsupported combined criterion, every case-mix comparison and the comparisons marked not estimable. The code and results at `1b1f118de324d2ac4297168f7a78ea1759e9e92c` are unchanged by this provenance note.
 
 ## Reproduce
 
